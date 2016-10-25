@@ -1,0 +1,17 @@
+Rhetorical Structure Theory (RST) (Mann and Thompson 1987), argues that in most
+coherent discourse, consecutive discourse elements are related by a small set of rhetorical
+relations. Moreover, RST suggests that the information conveyed in a discourse
+over and above what is conveyed in its component clauses can be derived from the
+rhetorical relation-based structure of the discourse. A large number of natural language
+generation systems rely on the rhetorical relations defined in RST to impose
+structure on multi-sentential text (Hovy 1991; Knott 1991; Moore and Paris 1989; Rosner
+and Stede 1992). In addition, many descriptive studies of discourse have employed
+RST (Fox 1987; Linden, Cumming, and Martin 1992; Matthiessen and Thompson 1988).
+However, recent work by Moore and Paris (1992) noted that RST cannot be used as
+the sole means of controlling discourse structure in an interactive dialogue system, because
+RST representations provide insufficient information to support the generation
+of appropriate responses to "follow-up questions." The basic problem is that an RST
+representation of a discourse does not fully specify the intentional structure (Grosz and
+Sidner 1986) of that discourse. Intentional structure is crucial for responding effectively
+to questions that address a previous utterance: without a record of what an utterance
+was intended to achieve, it is impossible to elaborate or clarify that utterance. 1

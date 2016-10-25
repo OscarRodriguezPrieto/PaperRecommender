@@ -1,0 +1,35 @@
+There is a growing consensus that significant, rapid progress can be made in both text
+understanding and spoken language understanding by investigating those phenomena
+that occur most centrally in naturally occurring unconstrained materials and by
+attempting to automatically extract information about language from very large corpora.
+Such corpora are beginning to serve as important research tools for investigators
+in natural language processing, speech recognition, and integrated spoken language
+systems, as well as in theoretical linguistics. Annotated corpora promise to be valuable
+for enterprises as diverse as the automatic construction of statistical models for
+the grammar of the written and the colloquial spoken language, the development of
+explicit formal theories of the differing grammars of writing and speech, the investigation
+of prosodic phenomena in speech, and the evaluation and comparison of the
+adequacy of parsing models.
+In this paper, we review our experience with constructing one such large annotated
+corpus--the Penn Treebank, a corpus 1 consisting of over 4.5 million words of American
+English. During the first three-year phase of the Penn Treebank Project (1989-1992), this
+corpus has been annotated for part-of-speech (POS) information. In addition, over half
+of it has been annotated for skeletal syntactic structure. These materials are available
+to members of the Linguistic Data Consortium; for details, see Section 5.1.
+The paper is organized as follows. Section 2 discusses the POS tagging task. After
+outlining the considerations that informed the design of our POS tagset and presenting
+the tagset itself, we describe our two-stage tagging process, in which text
+is first assigned POS tags automatically and then corrected by human annotators.
+Section 3 briefly presents the results of a comparison between entirely manual and
+semi-automated tagging, with the latter being shown to be superior on three counts:
+speed, consistency, and accuracy. In Section 4, we turn to the bracketing task. Just as
+with the tagging task, we have partially automated the bracketing task: the output of
+the POS tagging phase is automatically parsed and simplified to yield a skeletal syntactic
+representation, which is then corrected by human annotators. After presenting
+the set of syntactic tags that we use, we illustrate and discuss the bracketing process. In
+particular, we will outline various factors that affect the speed with which annotators
+are able to correct bracketed structures, a task that--not surprisingly--is considerably
+more difficult than correcting POS-tagged text. Finally, Section 5 describes the composition
+and size of the current Treebank corpus, briefly reviews some of the research
+projects that have relied on it to date, and indicates the directions that the project is
+likely to take in the future. 

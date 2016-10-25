@@ -1,0 +1,10 @@
+This paper presents context-group discrimination, a disambiguation algorithm based on clustering.
+Senses are interpreted as groups (or clusters) of similar contexts of the ambiguous word.
+Words, contexts, and senses are represented in Word Space, a high-dimensional, real-valued
+space in which closeness corresponds to semantic similarity. Similarity in Word Space is based
+on second-order co-occurrence: two tokens (or contexts) of the ambiguous word are assigned to
+the same sense cluster if the words they co-occur with in turn occur with similar words in a
+training corpus. The algorithm is automatic and unsupervised in both training and application:
+senses are induced from a corpus without labeled training instances or other external knowledge
+sources. The paper demonstrates good performance of context-group discrimination for a sample
+of natural and artificial ambiguous words. 
