@@ -7,12 +7,22 @@ public class Articulo extends Cita implements Comparable {
 	private String titulo;
 	private final int anyo;
 	private final String[] autores;
+	private final String pubVenue;
 
 	public Articulo(final String id, final String titulo, final int anyo, final String[] autores) {
 		super(id);
 		this.titulo = titulo;
 		this.anyo = anyo;
 		this.autores = autores;
+		pubVenue = "UNKNOWN";
+	}
+
+	public Articulo(final String id, final String titulo, final int anyo, final String[] autores, String pubVenue) {
+		super(id);
+		this.titulo = titulo;
+		this.anyo = anyo;
+		this.autores = autores;
+		this.pubVenue = pubVenue;
 	}
 
 	public String getTitulo() {
@@ -21,6 +31,10 @@ public class Articulo extends Cita implements Comparable {
 
 	public int getAnyo() {
 		return anyo;
+	}
+
+	public String getPubVenue() {
+		return pubVenue;
 	}
 
 	public String[] getAutores() {
@@ -32,7 +46,7 @@ public class Articulo extends Cita implements Comparable {
 		String autores = ":";
 		for (final String i : this.autores)
 			autores += i + ";";
-		return /*getId() + "\t" + */titulo/* + "\t(" + anyo + ")" + autores*/;
+		return /* getId() + "\t" + */titulo/* + "\t(" + anyo + ")" + autores */;
 	}
 
 	@Override
