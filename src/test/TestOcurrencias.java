@@ -4,7 +4,8 @@ import java.io.IOException;
 import java.util.List;
 
 import IO.extraccion.Cita;
-import IO.extraccion.ExtractorTotal;
+import IO.extraccion.ExtractorTotalACL;
+import IO.extraccion.Referencer;
 import IO.salida.SalidasSimple;
 import junit.framework.TestCase;
 import model.SingleArticle;
@@ -12,7 +13,7 @@ import model.SingleArticle;
 public class TestOcurrencias extends TestCase {
 
 	public void test() throws NumberFormatException, IOException {
-		List<Cita> citas = ExtractorTotal.extraerCitas();
+		List<Referencer> citas = ExtractorTotalACL.extraerCitas();
 		System.out.println(citas.size());
 		double t1 = System.currentTimeMillis();
 		SalidasSimple.i = 19022;

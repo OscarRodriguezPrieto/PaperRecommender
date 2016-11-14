@@ -3,26 +3,27 @@ package IO.extraccion;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Cita {
+public class Cita implements Referencer {
 
 	private String id;
-	private List<Cita> citas;
-
+	private List<Referencer> citas;
+	
+	
 	public Cita(String id) {
 		super();
 		this.id = id;
-		citas = new ArrayList<Cita>();
+		citas = new ArrayList<Referencer>();
 	}
 
 	public String getId() {
 		return id;
 	}
 
-	public void addCita(Cita a) {
+	public void addCita(Referencer a) {
 		citas.add(a);
 	}
 
-	public List<Cita> getCitas() {
+	public List<Referencer> getCitas() {
 		return citas;
 	}
 

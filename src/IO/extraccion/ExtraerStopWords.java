@@ -13,7 +13,7 @@ public class ExtraerStopWords {
 	private static List<String> getStopWords() {
 		List<String> res = new ArrayList<String>();
 		try {
-			BufferedReader br = ExtractorTotal.getReader(FICHERO_STOP);
+			BufferedReader br = ExtractorTotalACL.getReader(FICHERO_STOP);
 			while (br.ready())
 				res.add(br.readLine().trim());
 
