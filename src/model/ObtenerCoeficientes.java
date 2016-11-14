@@ -3,7 +3,7 @@ package model;
 import java.io.BufferedReader;
 import java.io.IOException;
 
-import IO.extraccion.ExtractorTotal;
+import IO.extraccion.ExtractorTotalACL;
 import IO.salida.SalidasSimple;
 
 public class ObtenerCoeficientes {
@@ -18,7 +18,7 @@ public class ObtenerCoeficientes {
 		SalidasSimple.i = inicial;
 		SalidasSimple.setArchivo("coeficientes/TODOS_PVALUES_ESCEPTICO");
 		for (int i = inicial; i < TOTAL_SIZE; i++) {
-			BufferedReader br = ExtractorTotal.getReader("resultados/resultado" + i);
+			BufferedReader br = ExtractorTotalACL.getReader("resultados/resultado" + i);
 
 			String cadena;
 			if (!(cadena = br.readLine()).contains("NaN"))

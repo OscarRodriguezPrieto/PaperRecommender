@@ -3,24 +3,25 @@ package model;
 import java.util.List;
 
 import IO.extraccion.Cita;
+import IO.extraccion.Referencer;
 
 public class ModeloCombinatorio {
 	public static final int CO_OCURRENCIA = 0;
 	public static final int A1_COUNTS = 1;
 	public static final int A2_COUNTS = 2;
 
-	public static double getCoeficientePara(List<Cita> citas, int a, int b) {
+	public static double getCoeficientePara(List<Referencer> citas, int a, int b) {
 		return getCoeficientePara(citas, citas.get(a), citas.get(b));
 	}
 
-	public static double getCoeficientePara(List<Cita> citas, Cita a, Cita b) {
+	public static double getCoeficientePara(List<Referencer> citas, Referencer a, Referencer b) {
 		return getPValor(getCounts(citas, a, b), citas.size());
 	}
 
-	public static int[] getCounts(List<Cita> citas, Cita a, Cita b) {
+	public static int[] getCounts(List<Referencer> citas, Referencer a, Referencer b) {
 		int[] res = new int[3];
 		for (int i = 0; i < citas.size(); i++) {
-			List<Cita> citasDe = citas.get(i).getCitas();
+			List<Referencer> citasDe = citas.get(i).getCitas();
 			boolean contieneA1 = citasDe.contains(a);
 			boolean contieneA2 = citasDe.contains(b);
 			if (contieneA1) {

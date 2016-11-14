@@ -9,7 +9,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-public class ExtractorTotal {
+public class ExtractorTotalACL {
 	static final String METADATA_FILE = "acl_data/acl-metadata.txt";
 	private static final int VALOR = 1;
 	private static final int CITA = 0;
@@ -17,10 +17,10 @@ public class ExtractorTotal {
 
 	private static final String CITAS_FILE = "acl_data/acl.txt";
 
-	public static List<Cita> extraerCitas() throws NumberFormatException,
+	public static List<Referencer> extraerCitas() throws NumberFormatException,
 			IOException {
 		final BufferedReader br = getReader(METADATA_FILE);
-		final List<Cita> lista = new ArrayList<Cita>();
+		final List<Referencer> lista = new ArrayList<Referencer>();
 		final Map<EnvoltorioCadena, Articulo> mapa = new HashMap<EnvoltorioCadena, Articulo>();
 		Articulo a = null;
 		while (br.ready())
@@ -33,7 +33,7 @@ public class ExtractorTotal {
 		return lista;
 	}
 
-	private static void extraerCitas(List<Cita> lista) throws IOException {
+	private static void extraerCitas(List<Referencer> lista) throws IOException {
 		BufferedReader br = getReader(CITAS_FILE);
 		while (br.ready()) {
 			String[] cita = br.readLine().split("==>");
@@ -63,11 +63,11 @@ public class ExtractorTotal {
 		return getValue(readLine).split(";");
 	}
 
-	public static Cita getArticulo(List<Cita> lista, String id) {
-		return lista.get(getIndex(lista, id));
+	public static Cita getArticulo(List<Referencer> lista, String id) {
+		return (Cita) lista.get(getIndex(lista, id));
 	}
 
-	public static int getIndex(List<Cita> lista, String id) {
+	public static int getIndex(List<Referencer> lista, String id) {
 		for (int i = 0; i < lista.size(); i++)
 			if (lista.get(i).getId().contentEquals(id.trim()))
 				return i;

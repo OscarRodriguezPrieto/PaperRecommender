@@ -14,7 +14,7 @@ public class ExtraerMejoresSimilitudes {
 		SalidasSimple.setArchivo(OUT_FILE);
 		final int SIZE = 20989;
 		for (int i = inicial; i < SIZE; i++) {
-			BufferedReader br = ExtractorTotal.getReader(IN_FILE + i);
+			BufferedReader br = ExtractorTotalACL.getReader(IN_FILE + i);
 			for (int j = 0; j < i; j++) {
 				String cadena;
 				String[] par = (cadena = br.readLine()).split("\t");

@@ -17,10 +17,10 @@ public class ExtractorACL {
 
 	private static final int VALOR = 1;
 
-	public static List<Cita> extraerArticulos() throws NumberFormatException,
+	public static List<Referencer> extraerArticulos() throws NumberFormatException,
 			IOException {
 		final BufferedReader br = getReader(METADATA_FILE);
-		final List<Cita> lista = new ArrayList<Cita>();
+		final List<Referencer> lista = new ArrayList<Referencer>();
 		final Map<EnvoltorioCadena, Articulo> mapa = new HashMap<EnvoltorioCadena, Articulo>();
 		Articulo a = null;
 		while (br.ready() && lista.size() < 2000)
@@ -33,7 +33,7 @@ public class ExtractorACL {
 		return lista;
 	}
 
-	private static void extraerCitas(List<Cita> lista) throws IOException {
+	private static void extraerCitas(List<Referencer> lista) throws IOException {
 		BufferedReader br = getReader(CITAS_FILE);
 		while (br.ready()) {
 			String[] citas = br.readLine().split("==>");
@@ -44,23 +44,20 @@ public class ExtractorACL {
 		}
 	}
 
-	public static Cita getArticulo(List<Cita> lista, String id) {
+	public static Cita getArticulo(List<Referencer> lista, String id) {
 		int index = getIndex(lista, id);
-		return index == -1 ? null : lista.get(index);
+		return (Cita) (index == -1 ? null : lista.get(index));
 	}
 
 	private static String[] getAutores(String readLine) {
 		return getValue(readLine).split(";");
 	}
 
-	public static int getIndex(List<Cita> lista, String id) {
+	public static int getIndex(List<Referencer> lista, String id) {
 		for (int i = 0; i < lista.size(); i++)
 			if (lista.get(i).getId().contentEquals(id.trim()))
 				return i;
 		System.err.println(id);
-		// Cita nuevaCita = new Cita(id.trim());
-		// lista.add(nuevaCita);
-		// return lista.size() - 1;
 		return -1;
 	}
 

@@ -1,14 +1,14 @@
 package model;
 
-import java.util.List;
+import java.util.List; 
 
-import IO.extraccion.Cita;
+import IO.extraccion.Referencer;
 import IO.salida.Salidas;
 
 public class ProcesarOcurrencias {
 	private static final String FILE = "coefficients/res.cvs";
 
-	public static void addOcurrencias(List<Cita> citas) {
+	public static void addOcurrencias(List<Referencer> citas) {
 		Salidas.setArchivo(FILE, (int) Math.pow(citas.size() / 50, 2));
 		final int N = citas.size();
 		for (int i = 1; i < N; i++) {

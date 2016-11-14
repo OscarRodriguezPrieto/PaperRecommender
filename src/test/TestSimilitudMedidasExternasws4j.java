@@ -11,7 +11,8 @@ import IO.extraccion.Articulo;
 import IO.extraccion.Cita;
 import IO.extraccion.ExtractorACL;
 import IO.extraccion.ExtractorDeCoeficientes;
-import IO.extraccion.ExtractorTotal;
+import IO.extraccion.ExtractorTotalACL;
+import IO.extraccion.Referencer;
 import edu.ucla.sspace.common.Similarity;
 import edu.ucla.sspace.common.Similarity.SimType;
 import model.ResultPair;
@@ -49,7 +50,7 @@ public static SimType TIPO_SIM = SimType.COSINE;
 		return res;
 	}
 
-	public static String getTitle(List<Cita> lista, String id) {
+	public static String getTitle(List<Referencer> lista, String id) {
 		Cita a = ExtractorACL.getArticulo(lista, id);
 		return a instanceof Articulo ? ((Articulo) a).getTitulo() : "CITA-> NO_TITLE";
 	}
@@ -84,7 +85,7 @@ public static SimType TIPO_SIM = SimType.COSINE;
 		// getSentenceSimilarityMean("Minimum Error Rate Training In Statistical
 		// Machine Translation", comparingTitle);
 
-		List<Cita> citas = ExtractorTotal.extraerCitas();
+		List<Referencer> citas = ExtractorTotalACL.extraerCitas();
 		List<ResultPair> pairForId = idFilter("W96-0213", ExtractorDeCoeficientes.getCoefficients(), 0.001);
 		Collections.sort(pairForId);
 		for (int i = 0; i < 20 && i < pairForId.size(); i++)

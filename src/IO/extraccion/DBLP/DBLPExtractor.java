@@ -1,6 +1,7 @@
 package IO.extraccion.DBLP;
 
 import java.io.BufferedReader;
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -8,40 +9,84 @@ import java.util.List;
 import java.util.Map;
 
 import IO.extraccion.Articulo;
+import IO.extraccion.ArticuloGCEfficient;
 import IO.extraccion.ExtractorACL;
 import IO.extraccion.lex.Tuple;
 
 public class DBLPExtractor {
-	private static final String IN_FILE = "dblp_data/dblp.txt";
+	private static final String IN_FILE = "dblp.txt";
 
-	private Map<String, Tuple<Articulo, List<String>>> refsMap = new HashMap<String, Tuple<Articulo, List<String>>>();
+	private static Map<String, Tuple<ArticuloGCEfficient,String []>> refsMap = new HashMap<String, Tuple<ArticuloGCEfficient, String[]>>();
 
-	public List<Articulo> getPaperList() throws IOException {
-		List<Articulo> paperList = new ArrayList<Articulo>();
+	
+	private static String[] getLines(int nLines) throws IOException{
+		String[] lines=new String[nLines];
 		BufferedReader br = ExtractorACL.getReader(IN_FILE);
+		for(int i=0;i<nLines;i++)
+			lines[i]=br.readLine();
+		return lines;
+	}
+	
+	public static ArticuloGCEfficient getPaperById(String id){
+		return refsMap.get(id).first;
+	}
+	public static List<ArticuloGCEfficient> getPaperList() throws IOException {
+	//	int totalLines=28028094;
+	//	String[] lines=getLines(totalLines);
+		BufferedReader br = ExtractorACL.getReader(IN_FILE);
+	//	System.out.println("LINES EXTRACTED");
+		List<ArticuloGCEfficient> paperList = new ArrayList<ArticuloGCEfficient>();
+		
 		while (br.ready())
 			paperList.add(extractArticle(br));
-		for (Articulo a : paperList)
-			for (String refID : refsMap.get(a.getId()).second)
-				a.addCita(refsMap.get(refID).first);
+		for (ArticuloGCEfficient a : paperList) {
+			Tuple<ArticuloGCEfficient,String[]> paperInfo = refsMap.get(a.getId());
+			ArticuloGCEfficient[] citas = new ArticuloGCEfficient[paperInfo.second.length];
+			//System.out.println("Citas de :"+paperInfo.first.getId());
+			for (int i = 0; i < citas.length; i++){
+				//System.out.println(i+":"+paperInfo.second.get(i));
+				citas[i] = refsMap.get(paperInfo.second[i]).first;
+				
+			}
+			a.setCitas(citas);
+		}
 
 		return paperList;
 	}
 
-	private Articulo extractArticle(BufferedReader br) throws IOException {
-
-		String title = br.readLine().split("#*")[0];
-		String[] authors = br.readLine().split("#@")[0].trim().split(",");
-		int year = Integer.parseInt(br.readLine().split("#t")[0]);
-		String pubVenue = br.readLine().split("#c")[0];
-		String id = br.readLine().split("#index")[0];
+	private static ArticuloGCEfficient extractArticle(BufferedReader br) throws IOException {
+		
+		String line = br.readLine();
+		//System.out.println(line);
+		String title = line.substring(2);
+		//System.out.println(title);
+		line = br.readLine();
+		String[] authors = line.contains("@") ? line.substring(2).trim().split(",") : new String[] {};
+		if (authors.length > 0)
+			line = br.readLine();
+		//System.out.println(line);
+		int year = Integer.parseInt(line.substring(2));
+		//System.out.println(year);
+		line = br.readLine();
+		String pubVenue = line.contains("#c") ? line.substring(2) : "UNKNOWN";
+		if (line.contains("#c"))
+			line = br.readLine();
+		String id = line.substring(6);
 
 		List<String> refs = new ArrayList<String>();
-		String line;
+
 		while ((line = br.readLine()).contains("#%"))
 			refs.add(line.substring(2));
-		Articulo articulo = new Articulo(id, title, year, authors, pubVenue);
-		refsMap.put(id, new Tuple<Articulo, List<String>>(articulo, refs));
+
+		String abstrac = "UNKNOWN";
+		if (line.contains("#!")) {
+			abstrac = line.substring(2);
+			line = br.readLine();
+		}
+
+		ArticuloGCEfficient articulo = new ArticuloGCEfficient(title, year, authors, pubVenue, abstrac, id);
+		String[] aux=new String[refs.size()];
+		refsMap.put(id, new Tuple<ArticuloGCEfficient, String[]>(articulo,refs.toArray(aux)));
 		return articulo;
 	}
 }
