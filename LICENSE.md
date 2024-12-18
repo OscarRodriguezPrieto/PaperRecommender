@@ -1,6 +1,6 @@
 MIT License
 
-Copyright (c) 2017 Computational Reflection research group, University of Oviedo.
+Copyright (c) 2019 UNED RESEARCH GROUP IN NATURAL LANGUAGE PROCESSING AND INFORMATION RETRIEVAL research group, UNED & Óscar Rodríguez Prieto, University of Oviedo.
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
